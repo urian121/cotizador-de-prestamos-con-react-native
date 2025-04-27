@@ -1,20 +1,105 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, StatusBar } from 'react-native';
+import { Text, Paragraph } from 'react-native-paper';
+import Slider from '@react-native-community/slider';
 
-export default function App() {
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from './src/colorConstants';
+import { styles } from "./src/style"
+import { Footer } from "./src/components/Footer"
+
+
+export default function LoanCalculator() {
+  const [amount, setAmount] = useState(10000);
+  const [interest, setInterest] = useState(5);
+  const [months, setMonths] = useState(12);
+
+  // Calcular el monto en función del interés y el plazo, solo cuando se mueven los sliders
+  const calculateAmount = (interest, months) => {
+    return (interest / 100) * 10000 * months;
+  };
+
+  // Solo realiza el cálculo del monto si interest o months cambian
+  useEffect(() => {
+    const newAmount = calculateAmount(interest, months);
+    setAmount(newAmount);
+  }, [interest, months]);
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+      <SafeAreaView style={{ flex: 0, backgroundColor: colors.primary }} />
+
+      <SafeAreaView style={styles.container}>
+        {/* Círculo de progreso */}
+        <View style={styles.circleContainer}>
+          <View style={styles.circle}>
+            <Text style={styles.circleText}>${amount.toLocaleString()}</Text>
+          </View>
+        </View>
+
+        <Text style={styles.title}>Cotizador de Préstamos</Text>
+
+        {/* Cantidad */}
+        <Text style={styles.label}>Cantidad a solicitar</Text>
+        <Slider
+          style={styles.slider}
+          minimumValue={1000}
+          maximumValue={100000}
+          step={500}
+          minimumTrackTintColor={colors.primary}
+          maximumTrackTintColor="#ccc"
+          thumbTintColor={colors.primary}
+          value={amount}
+          onValueChange={setAmount}  // No se debe recalcular el amount aquí
+        />
+
+        {/* Interés */}
+        <Text style={styles.label}>Interés anual: {interest}%</Text>
+        <Slider
+          style={styles.slider}
+          minimumValue={1}
+          maximumValue={30}
+          step={0.5}
+          minimumTrackTintColor={colors.primary}
+          maximumTrackTintColor="#ccc"
+          thumbTintColor={colors.primary}
+          value={interest}
+          onValueChange={setInterest}  // Solo se actualiza el interés
+        />
+
+        {/* Plazo */}
+        <Text style={styles.label}>Plazo (meses): {months} meses</Text>
+        <Slider
+          style={styles.slider}
+          minimumValue={6}
+          maximumValue={60}
+          step={1}
+          minimumTrackTintColor={colors.primary}
+          maximumTrackTintColor="#ccc"
+          thumbTintColor={colors.primary}
+          value={months}
+          onValueChange={setMonths}  // Solo se actualiza el plazo
+        />
+
+        {/* Resumen */}
+        <View style={styles.summary}>
+          <Paragraph style={styles.paragraph}>
+            <Text style={[styles.bold, styles.resumen]}>Monto: </Text><Text style={styles.bold}>${amount.toLocaleString()}</Text>
+          </Paragraph>
+          <Paragraph style={styles.paragraph}>
+            <Text style={[styles.bold, styles.resumen]}>Interés: </Text><Text style={styles.bold}>{interest}%</Text>
+          </Paragraph>
+          <Paragraph style={styles.paragraph}>
+            <Text style={[styles.bold, styles.resumen]}>Plazo: </Text><Text style={styles.bold}>{months} meses</Text>
+          </Paragraph>
+        </View>
+
+      </SafeAreaView>
+
+      <Footer />
+
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
