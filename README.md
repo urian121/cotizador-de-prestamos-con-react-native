@@ -4,6 +4,8 @@
 
 El **Cotizador de Préstamos** es una aplicación móvil construida con **React Native** que permite a los usuarios calcular el monto de un préstamo según diferentes parámetros, tales como la cantidad solicitada, el interés anual y el plazo en meses. Los usuarios pueden interactuar con sliders para ajustar estos valores y ver un resumen al final, junto con un botón para "Solicitar Préstamo".
 
+![Vista Previa](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/refs/heads/master/cotizador-prestamos-react-native.png)
+
 ## Tecnologías utilizadas
 
 Esta aplicación está construida utilizando las siguientes tecnologías y librerías:
