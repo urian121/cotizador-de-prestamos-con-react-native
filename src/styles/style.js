@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, buttonStyle, circleStyle, circleTextStyle, progressBarStyle } from './colorConstants';
+import { colors, buttonStyle, circleStyle, circleTextStyle, progressBarStyle } from '../constants/colorConstants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -19,11 +19,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.black,
   },
-  resumen: {
-    fontSize:20,
-  },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     marginTop: 10,
     color: colors.darkGray,
     alignSelf: 'flex-start',
@@ -40,31 +37,17 @@ export const styles = StyleSheet.create({
   circle: circleStyle,
   circleText: circleTextStyle,
   progressBar: progressBarStyle,
-  summary: {
-    width: "100%",
-    marginTop: 20,
-    backgroundColor: colors.white,
-    padding: 15,
-    borderRadius: 8,
-  },
-  paragraph: {
-    marginBottom: 8,
-    fontSize: 16,
-  },
-  bold: {
-    fontWeight: 'bold',
-    color: "#333",
-  },
+
   footer: {
     width: '100%',
-    height: 80,
+    height: 60,
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   circleNext: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: 25,
     backgroundColor: colors.secondary,
     justifyContent: 'center', // Centrar el contenido verticalmente
@@ -73,5 +56,17 @@ export const styles = StyleSheet.create({
   },
   statusBar: {
     backgroundColor: colors.primary,
+  },
+  sliderTrack: {
+    height: 10,  // Línea más gruesa
+    borderRadius: 5,
+  },
+  sliderThumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: colors.primary,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: 'white',
   }
 });

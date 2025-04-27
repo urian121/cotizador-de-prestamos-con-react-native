@@ -18,7 +18,7 @@ export const circleStyle = {
     height: 200,
     borderRadius: 125, // Mitad de 250
     backgroundColor: colors.lightGray,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',

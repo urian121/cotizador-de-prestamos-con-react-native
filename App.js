@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
-import { Text, Paragraph } from 'react-native-paper';
-import Slider from '@react-native-community/slider';
+import { Text } from 'react-native-paper';
+import { Slider } from '@miblanchard/react-native-slider';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from './src/colorConstants';
-import { styles } from "./src/style"
+import { colors } from './src/constants/colorConstants';
+import { styles } from "./src/styles/style"
+import { Resumen } from "./src/components/Resumen"
 import { Footer } from "./src/components/Footer"
 
 
@@ -44,57 +45,53 @@ export default function LoanCalculator() {
         {/* Cantidad */}
         <Text style={styles.label}>Cantidad a solicitar</Text>
         <Slider
-          style={styles.slider}
+          containerStyle={styles.slider}
           minimumValue={1000}
           maximumValue={100000}
           step={500}
           minimumTrackTintColor={colors.primary}
           maximumTrackTintColor="#ccc"
           thumbTintColor={colors.primary}
+          trackStyle={styles.sliderTrack}
+          thumbStyle={styles.sliderThumb}
           value={amount}
-          onValueChange={setAmount}  // No se debe recalcular el amount aquí
+          onValueChange={(value) => setAmount(value[0])}
         />
 
         {/* Interés */}
         <Text style={styles.label}>Interés anual: {interest}%</Text>
         <Slider
-          style={styles.slider}
+          containerStyle={styles.slider}
           minimumValue={1}
           maximumValue={30}
           step={0.5}
           minimumTrackTintColor={colors.primary}
           maximumTrackTintColor="#ccc"
           thumbTintColor={colors.primary}
+          trackStyle={styles.sliderTrack}
+          thumbStyle={styles.sliderThumb}
           value={interest}
-          onValueChange={setInterest}  // Solo se actualiza el interés
+          onValueChange={(value) => setInterest(value[0])}
         />
 
         {/* Plazo */}
         <Text style={styles.label}>Plazo (meses): {months} meses</Text>
         <Slider
-          style={styles.slider}
+          containerStyle={styles.slider}
           minimumValue={6}
           maximumValue={60}
           step={1}
           minimumTrackTintColor={colors.primary}
           maximumTrackTintColor="#ccc"
           thumbTintColor={colors.primary}
+          trackStyle={styles.sliderTrack}
+          thumbStyle={styles.sliderThumb}
           value={months}
-          onValueChange={setMonths}  // Solo se actualiza el plazo
+          onValueChange={(value) => setMonths(value[0])}
         />
 
         {/* Resumen */}
-        <View style={styles.summary}>
-          <Paragraph style={styles.paragraph}>
-            <Text style={[styles.bold, styles.resumen]}>Monto: </Text><Text style={styles.bold}>${amount.toLocaleString()}</Text>
-          </Paragraph>
-          <Paragraph style={styles.paragraph}>
-            <Text style={[styles.bold, styles.resumen]}>Interés: </Text><Text style={styles.bold}>{interest}%</Text>
-          </Paragraph>
-          <Paragraph style={styles.paragraph}>
-            <Text style={[styles.bold, styles.resumen]}>Plazo: </Text><Text style={styles.bold}>{months} meses</Text>
-          </Paragraph>
-        </View>
+        <Resumen amount={amount} interest={interest} months={months} />
 
       </SafeAreaView>
 

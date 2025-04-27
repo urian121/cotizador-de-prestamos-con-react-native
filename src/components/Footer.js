@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { styles } from "../style"
+import { styles } from "../styles/style"
 
 export const Footer = () => {
   return (

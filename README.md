@@ -11,7 +11,7 @@ Esta aplicación está construida utilizando las siguientes tecnologías y libre
 - **React Native**: Framework principal para desarrollar la aplicación móvil.
 - **React Native Paper**: Librería para crear componentes de interfaz de usuario modernos y consistentes como botones y texto.
 - **React Native Safe Area Context**: Asegura que el contenido de la app no se sobreponga a las áreas no accesibles de la pantalla, como las de la barra de estado o los bordes redondeados en dispositivos modernos.
-- **React Native Slider**: Librería para implementar sliders (controles deslizantes) interactivos para seleccionar valores.
+- **@miblanchard/react-native-slider**: Librería para implementar sliders (controles deslizantes) interactivos para seleccionar valores.
 - **React Native Vector Icons**: Usada para los íconos (en este caso, el ícono de avance para el botón).
 - **StatusBar**: Permite personalizar la barra de estado para mejorar la apariencia visual.
 - **useState**: Hook de React para manejar el estado de la aplicación.
@@ -30,7 +30,7 @@ Para ejecutar este proyecto localmente, sigue estos pasos:
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/tu-usuario/cotizador-prestamos.git
+   https://github.com/urian121/cotizador-de-prestamos-con-react-native.git
    ```
 
 2. **Instalar las dependencias**:
